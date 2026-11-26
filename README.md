@@ -49,7 +49,7 @@ Send `/start` to the bot and choose a nickname or anonymous mode. Subsequent tex
 | `/anonymous` | Switch to anonymous posting and retain the saved nickname. |
 | `/cancel` | Cancel pending setup or a nickname change. |
 
-The bot quotes the confession and adds the author signature below it. Nicknames are reserved to Telegram account IDs. When checking ownership, the bot ignores decoration such as spaces, punctuation, and accents in names containing letters or numbers. It also compares common Unicode look-alikes. When older names collide, the earliest confirmed post takes precedence. [Unicode guidance](https://www.unicode.org/reports/tr39/#Confusable_Detection)
+The bot publishes the confession in plain text with the author signature on a separate line below it. Nicknames are reserved to Telegram account IDs. When checking ownership, the bot ignores decoration such as spaces, punctuation, and accents in names containing letters or numbers. It also compares common Unicode look-alikes. When older names collide, the earliest confirmed post takes precedence. [Unicode guidance](https://www.unicode.org/reports/tr39/#Confusable_Detection)
 
 Allowances renew at local midnight. Once all available slots have been used by confirmed posts, the bot privately offers a **Please** button. Tapping it or typing `please` refills the allowance. A rejected send releases its slot. A send with an unknown outcome holds its slot until recovery.
 

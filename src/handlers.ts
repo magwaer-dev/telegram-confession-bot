@@ -212,13 +212,7 @@ export function registerHandlers(
         if ("submission" in action) {
             const { submission } = action;
             const result = await publish(submission, () => ctx.api.sendMessage(submission.channelId,
-                channelText(submission), {
-                    link_preview_options: { is_disabled: true },
-                    entities: [
-                        { type: "blockquote", offset: 0, length: submission.text.length },
-                        { type: "bold", offset: submission.text.length + 2, length: submission.label.length + 2 },
-                    ],
-                }), pause);
+                channelText(submission), { link_preview_options: { is_disabled: true } }), pause);
             if (result.status !== "uncertain" && !storage.resolve(submission.reference, result, now().toISOString())) {
                 throw new Error("Publication reservation could not be resolved.");
             }

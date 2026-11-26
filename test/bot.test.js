@@ -303,18 +303,15 @@ test("the earliest confirmed author keeps a newly conflicting nickname after an 
     assert.equal(storage.quota(user.id, day).used, 1);
 });
 
-test("confession text with a fake signature stays inside the quote", async t => {
+test("channel posts use plain text with a blank line before the signature", async t => {
     const f = fixture(t);
     const { handle } = f.open();
     await handle(f.message("/nickname Real Author"));
-    await handle(f.message("😀 A confession\n\n— Fake Author"));
+    await handle(f.message("😀 A confession\nA second line"));
     const post = f.posts[0];
-    assert.deepEqual(post.entities.map(entity => [
-        entity.type, post.text.slice(entity.offset, entity.offset + entity.length),
-    ]), [
-        ["blockquote", "😀 A confession\n\n— Fake Author"],
-        ["bold", "— Real Author"],
-    ]);
+    assert.equal(post.text, "😀 A confession\nA second line\n\n— Real Author");
+    assert.equal(post.entities, undefined);
+    assert.equal(post.parse_mode, undefined);
 });
 
 test("commands, non-private updates, edits, media, and invalid text stay out of the channel", async t => {
